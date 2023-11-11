@@ -5,6 +5,7 @@ import cv2                              # pip install opencv-python
 import numpy                            # pip install numpy
 from PIL import ImageGrab               # pip install pillow
 import sys, time, ctypes                # python自带 不用安装
+from random import random               # python自带 不用安装
 
 img_templ = cv2.imread('play_button.jpg' ) #加载模板图片
 THRESHOLD = 0.97
@@ -25,7 +26,7 @@ def mainLoop():
     if min_max[1] > THRESHOLD :
         print('处于对话状态，模拟鼠标单击')
         ctypes.windll.user32.mouse_event(2)
-        time.sleep(0.1)
+        time.sleep(0.05 + 0.1 * random())
         ctypes.windll.user32.mouse_event(4)
 
     
@@ -35,7 +36,7 @@ if __name__ == '__main__':
         print('当前已是管理员权限')
         while True:
             mainLoop()
-            time.sleep(0.4)
+            time.sleep(0.3 + 0.2 * random())
     else:
         print('当前不是管理员权限，以管理员权限启动新进程...')
         ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, __file__, None, 1)
