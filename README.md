@@ -6,4 +6,5 @@ pip install keyboard
 pip install pillow
 pip install numpy
 pip install opencv-python
+```
 使用代理在后面添加 --proxy 地址:端口
